@@ -1,0 +1,18 @@
+{
+    "name": "rataciber/php-albures-rest",
+    "description": "Obtén albures utilizando firebase",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Roldan Araujo",
+            "email": "mroldan@webmonster.mx"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "5.7.x-dev",
+        "consolidation/robo": "^1.0@dev"
+    }
+}
