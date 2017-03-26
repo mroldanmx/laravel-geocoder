@@ -9,3 +9,4 @@ php:
   - nightly
 install:
    - composer install
+script: composer test
