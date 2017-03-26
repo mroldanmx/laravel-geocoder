@@ -30,7 +30,7 @@ Just run the following to run the test:
 $ composer test
 ```
 
-#### Continiuos Testing
+#### Continuous Testing
 
 The composer.json comes with [PHPUnit]() and the task runner [Robo](https://github.com/consolidation/Robo).
 
