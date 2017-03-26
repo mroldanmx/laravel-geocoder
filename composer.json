@@ -1,6 +1,6 @@
 {
-    "name": "rataciber/php-albures-rest",
-    "description": "Obtén albures utilizando firebase",
+    "name": "rataciber/php-skeleton-project",
+    "description": "Skeleton project to kickstart development.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -13,6 +13,12 @@
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "5.7.x-dev",
-        "consolidation/robo": "^1.0@dev"
+        "consolidation/robo": "^1.0@dev",
+        "henrikbjorn/lurker": "^1.0@dev",
+        "hirak/prestissimo": "dev-master"
+    },
+    "scripts":{
+        "test": "vendor/consolidation/robo/robo test -vv"
     }
+    
 }
