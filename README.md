@@ -1,4 +1,6 @@
 # php-skeleton-project
+![build](https://travis-ci.org/ratacibernetica/php-skeleton-project.svg?branch=master)
+
 A PHP skeleton project with some goodies.
 
 ### Usage
