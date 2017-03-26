@@ -18,16 +18,25 @@ $ composer install
 3. Make it yours, remove the remote:
 
 ```
-$ git remote remove 
+$ git remote origin 
 ```
 
 ### Testing
+
+#### Normal testing
+
+Just run the following to run the test:
+```
+$ composer test
+```
+
+#### Continiuos Testing
 
 The composer.json comes with [PHPUnit]() and the task runner [Robo](https://github.com/consolidation/Robo).
 
 To execute the task runner defined in the `RoboFile`:
 ```
-$ composer test
+$ composer watch
 ```
 
 The robo plugin executes the tests **every time a change is made in src or tests folder**. You can tweak this to your preference in the RoboFile.
