@@ -1,4 +1,4 @@
-# php-skeleton-library
+# php-skeleton-project
 A PHP skeleton project with some goodies.
 
 ### Usage
