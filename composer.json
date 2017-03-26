@@ -18,7 +18,8 @@
         "hirak/prestissimo": "dev-master"
     },
     "scripts":{
-        "test": "vendor/consolidation/robo/robo test -vv"
+        "watch": "vendor/consolidation/robo/robo test -vv",
+        "test": "vendor/phpunit/phpunit/phpunit --colors=auto --bootstrap src/Some.class.php tests/Some.test.php -vv"
     }
     
 }
