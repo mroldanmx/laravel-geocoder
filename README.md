@@ -33,6 +33,23 @@ $location->standard->prov; //BC
 }
 ```
 
+### Using proxy
+
+To try avoiding the geocoder.ca service throttling us.
+
+It'll try the request until a location is received without ERROR_ACCESS_DENIED
+
+we can activate a proxy list by doing:
+
+```php
+$geo->debug = true;
+$geo->useProxy= true;
+
+//will download a list of proxies from $geo->proxyListURL. Set to https://proxy.rudnkh.me/txt by default
+
+$geo->locate("V8L4S2");
+```
+
 #### Continuous Testing
 
 The composer.json comes with [PHPUnit]() and the task runner [Robo](https://github.com/consolidation/Robo).
