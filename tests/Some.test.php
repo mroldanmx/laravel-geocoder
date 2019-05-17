@@ -1,11 +1,15 @@
 <?php
 
+require "vendor/autoload.php";
 use PHPUnit\Framework\TestCase;
 
 class SomeTest extends TestCase{
 
         public function testSome() {
-            $geo = new Geocoder();
+            $geo = new Mroldan\Geocoder\Geocoder();
+            $geo->debug = true;
+            $geo->useProxy= true;
+
             $this->assertContains( "geocoder", $geo->serviceURL("V8L4S2"));
 
             $location = $geo->locate("V8L4S2");

@@ -20,10 +20,11 @@
     "phpunit/phpunit": "5.7.x-dev",
     "consolidation/robo": "^1.0@dev",
     "henrikbjorn/lurker": "^1.0@dev",
-    "hirak/prestissimo": "dev-master"
+    "hirak/prestissimo": "dev-master",
+    "psy/psysh": "@stable"
   },
   "scripts": {
-    "watch": "vendor/consolidation/robo/robo test -vv",
-    "test": "vendor/phpunit/phpunit/phpunit --colors=auto --bootstrap src/Geocoder.php tests/Some.test.php -vv"
+    "watch": "vendor/consolidation/robo/robo test -vvv",
+    "test": "vendor/phpunit/phpunit/phpunit --colors=auto --bootstrap src/Geocoder.php tests/Some.test.php -vvv"
   }
 }
