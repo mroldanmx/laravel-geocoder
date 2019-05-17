@@ -1,6 +1,9 @@
-# php-skeleton-project
+# Laravel Geocoder
 
-Find the location data from a string, such as prov, city, and coordinates.
+Find the location data from a string, such as prov, city, and coordinates. Dead Simple.
+Works for US and CA addresses.
+
+Uses https://geocoder.ca on the background
 
 ### Usage
 
