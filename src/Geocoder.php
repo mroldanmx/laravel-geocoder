@@ -1,5 +1,7 @@
 <?php
 
+namespace Mroldan\Geocoder;
+
 class Geocoder {
 
     private $cache = [];
