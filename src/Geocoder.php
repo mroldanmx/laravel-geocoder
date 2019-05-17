@@ -23,6 +23,11 @@ class Geocoder {
         return $this->cacheGet($key);
     }
 
+    /**
+     * Get location data
+     * @param string $location
+     * @return Object|null
+     */
     public function locate($location){
         $results = null;
         $contents = $this->cacheGet($location);
