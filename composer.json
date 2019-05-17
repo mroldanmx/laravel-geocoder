@@ -9,6 +9,11 @@
       "email": "mroldan@webmonster.mx"
     }
   ],
+  "autoload": {
+    "psr-4": {
+      "Mroldan\\Geocoder\\": "src"
+    }
+  },
   "minimum-stability": "dev",
   "require": {},
   "require-dev": {
