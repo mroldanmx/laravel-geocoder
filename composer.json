@@ -1,25 +1,24 @@
 {
-    "name": "rataciber/php-skeleton-project",
-    "description": "Skeleton project to kickstart development.",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Martin Roldan Araujo",
-            "email": "mroldan@webmonster.mx"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {},
-    "require-dev": {
-        "phpunit/phpunit": "5.7.x-dev",
-        "consolidation/robo": "^1.0@dev",
-        "henrikbjorn/lurker": "^1.0@dev",
-        "hirak/prestissimo": "dev-master"
-    },
-    "scripts":{
-        "watch": "vendor/consolidation/robo/robo test -vv",
-        "test": "vendor/phpunit/phpunit/phpunit --colors=auto --bootstrap src/Some.class.php tests/Some.test.php -vv"
+  "name": "mroldan/laravel-geocoder",
+  "description": "Laravel Geocoder",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Roldan Araujo",
+      "email": "mroldan@webmonster.mx"
     }
-    
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "5.7.x-dev",
+    "consolidation/robo": "^1.0@dev",
+    "henrikbjorn/lurker": "^1.0@dev",
+    "hirak/prestissimo": "dev-master"
+  },
+  "scripts": {
+    "watch": "vendor/consolidation/robo/robo test -vv",
+    "test": "vendor/phpunit/phpunit/phpunit --colors=auto --bootstrap src/Geocoder.php tests/Some.test.php -vv"
+  }
 }

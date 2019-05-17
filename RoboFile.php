@@ -11,7 +11,7 @@ class RoboFile extends \Robo\Tasks
         $this->taskWatch()
                 ->monitor(["src","tests"], function(){
                         $this->taskPHPUnit()
-                                ->bootstrap("src/Some.class.php")
+                                ->bootstrap("src/Geocoder.php")
                                 ->file("tests/Some.test.php")
                                 ->run();
                 })->run();

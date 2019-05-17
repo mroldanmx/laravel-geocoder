@@ -5,8 +5,16 @@ use PHPUnit\Framework\TestCase;
 class SomeTest extends TestCase{
 
         public function testSome() {
-            $some = new SomeClass();
-            $this->assertEquals( "some string", $some->mimic("some string"));
+            $geo = new Geocoder();
+            $this->assertContains( "geocoder", $geo->serviceURL("V8L4S2"));
+
+            $location = $geo->locate("V8L4S2");
+
+            $this->assertTrue(is_object($location));
+            $this->assertContains('Sidney',$location->standard->city);
+
+            //this one should run from cache
+            $this->assertNull($geo->locate("THIS SHOULD BE A VERY LARGE LOCATION"));
         } 
 } 
 ?>
