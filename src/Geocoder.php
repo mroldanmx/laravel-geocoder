@@ -146,7 +146,7 @@ class Geocoder
                 $contents = $this->fileGetContents($url);
             } else {
                 $this->log('No more proxies to try');
-                $contents = null;
+                throw new NoMoreProxiesException('No more proxies to try');
             }
         }
 
