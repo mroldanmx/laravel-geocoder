@@ -3,22 +3,105 @@
 require "vendor/autoload.php";
 use PHPUnit\Framework\TestCase;
 
-class SomeTest extends TestCase{
+class SomeTest extends TestCase
+{
 
-        public function testSome() {
-            $geo = new Mroldan\Geocoder\Geocoder();
-            $geo->debug = true;
-            $geo->useProxy= true;
+    public function testSome()
+    {
+        $geo = new Mroldan\Geocoder\Geocoder();
+        $geo->debug = true;
+        $geo->useProxy = true;
 
-            $this->assertContains( "geocoder", $geo->serviceURL("V8L4S2"));
+        $zipsToTest = [
+            "01970",
+            "01982",
+            "01983",
+            "01984",
+            "01985",
+            "02019",
+            "02020",
+            "02021",
+            "02025",
+            "02026",
+            "02030",
+            "02032",
+            "02035",
+            "02038",
+            "02041",
+            "02043",
+            "02045",
+            "02047",
+            "02048",
+            "02050",
+            "02051",
+            "02052",
+            "02053",
+            "02054",
+            "02056",
+            "02059",
+            "02060",
+            "02061",
+            "02062",
+            "02066",
+            "02067",
+            "02071",
+            "02072",
+            "02081",
+            "02090",
+            "02093",
+            "02109",
+            "02110",
+            "02111",
+            "02113",
+            "02114",
+            "02115",
+            "02116",
+            "02118",
+            "02119",
+            "02120",
+            "02122",
+            "02124",
+            "02125",
+            "02126",
+            "02127",
+            "02128",
+            "02129",
+            "02130",
+            "02131",
+            "02132",
+            "02134",
+            "02135",
+            "02136",
+            "02138",
+            "02139",
+            "02140",
+            "02141",
+            "02143",
+            "02144",
+            "02145",
+            "02148",
+            "02149",
+            "02150",
+            "02151",
+            "02152",
+            "02155",
+            "02169",
+            "02170",
+            "02171",
+            "02176",
+            "02180",
+            "02184",
+            "02185",
+            "02186",
+            "32757",
+            "V8L4S2",
+        ];
 
+
+        foreach ($zipsToTest as $zip) {
+            $this->assertContains("geocoder", $geo->serviceURL($zip));
             $location = $geo->locate("V8L4S2");
-
             $this->assertTrue(is_object($location));
-            $this->assertContains('Sidney',$location->standard->city);
-
-            //this one should run from cache
-            $this->assertNull($geo->locate("THIS SHOULD BE A VERY LARGE LOCATION"));
-        } 
-} 
-?>
+        }
+    }
+}

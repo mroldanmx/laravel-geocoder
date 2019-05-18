@@ -6,13 +6,29 @@ class Geocoder {
 
     private $cache = [];
     private $proxyList = null;//set in downloadProxyList 
+    private $currentProxy = null;
 
     public $useProxy = false;
     public $debug = false;
     public $proxyListURL = 'https://proxy.rudnkh.me/txt';
 
+    public $sourceURL = "http://geocoder.ca";
+    public $options = [
+        'json'=>1,
+    ]; //can be customized
+
+    public $errorTypes = [
+        'Throttled',
+        'ERR_ACCESS_DENIED',
+        '400 Bad Request',
+        'Authentication Required',
+    ];
+    
+
     public function serviceURL($location){
-        return sprintf("http://geocoder.ca?json=1&locate=%s", $location);
+        $this->options['locate'] = $location;
+        $queryParams = \http_build_query($this->options);
+        return sprintf("%s?%s",$this->sourceURL,$queryParams);
     }
 
     public function cacheGet($key){
@@ -78,11 +94,11 @@ class Geocoder {
         if(is_null($this->proxyList)){
             $this->proxyList = $this->downloadProxyList();
         }
-        return array_shift($this->proxyList);
+        $this->currentProxy = array_shift($this->proxyList);
     }
 
 
-    public function fileGetContents($url,$proxy=false){
+    public function fileGetContents($url){
         
         $ch = curl_init();
         // set url
@@ -92,8 +108,9 @@ class Geocoder {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
 
-        if($proxy){
-            curl_setopt($ch, CURLOPT_PROXY, $proxy);
+        if($this->currentProxy){
+            $this->log("using proxy $this->currentProxy");
+            curl_setopt($ch, CURLOPT_PROXY, $this->currentProxy);
         }
 
         // $output contains the output string
@@ -102,13 +119,16 @@ class Geocoder {
         // close curl resource to free up system resources
         curl_close($ch); 
 
-        if($this->useProxy && ($throttled = strpos($contents,'Throttled') !== false || $denied = strpos($contents,'ERR_ACCESS_DENIED') !== false)){
-            $this->log($throttled?'Throttled':'ACCESS_DENIED');
-            $nextProxy = $this->nextProxy();
+        $error = $this->parseErrors($contents);
+
+        if($error && $this->useProxy){
+
+            $this->log($error);
+            $this->nextProxy();
             
-            if($nextProxy){
-                $this->log("Trying with proxy... $nextProxy");
-                $contents = $this->fileGetContents($url, $nextProxy);
+            if($this->currentProxy){
+                $this->log("Trying with proxy... $this->currentProxy");
+                $contents = $this->fileGetContents($url);
             }else{
                 $this->log('No more proxies to try');
                 $contents = null;
@@ -118,11 +138,19 @@ class Geocoder {
         return $contents;
     }
 
+    private function parseErrors($string){
+        foreach($this->errorTypes as $errorType){
+            if(strpos($string,$errorType) !== false){
+                return $errorType;
+            }
+        }
+
+        return false;
+    }
+
     private function log($msg){
         if($this->debug){
             error_log($msg);
         }
     }
 }
-
-?>
